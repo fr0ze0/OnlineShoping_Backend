@@ -1,5 +1,9 @@
-import java.util.HashMap;
+public class ElectronicItem extends Category {
+    public ElectronicItem() {}
 
-public class Electronic extends Product {
-    public HashMap<Integer, String> products;
+    public ElectronicItem(String title, String description, double price) {
+        this.setTitle(title);
+        this.setDescription(description);
+        this.setPrice(price);
+    }
 }

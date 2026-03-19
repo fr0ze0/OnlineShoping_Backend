@@ -1,4 +1,9 @@
-package PACKAGE_NAME;
+public class GardenItem extends Category {
+    public GardenItem() {}
 
-public class MobilePhones {
+    public GardenItem(String title, String description, double price) {
+        this.setTitle(title);
+        this.setDescription(description);
+        this.setPrice(price);
+    }
 }

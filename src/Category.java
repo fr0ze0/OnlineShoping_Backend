@@ -1,22 +1,20 @@
-public abstract class Product {
-    private int id;
-    private String title;
+public abstract class Category {
+    private int id = -1;
+    protected String title;
     private double price;
     private String description;
 
-    public Product() {}
+    public Category() {}
 
-    public Product(String title, String description, double price) {
+    public Category(String title, String description, double price) {
         this.title = title;
         this.description = description;
         this.price = price;
-        generateId();
+        generateId(this.id);
     }
 
-    private void generateId() {
-        String id_s = "";
-        this.title.chars().forEach(c -> id_s.join(String.valueOf(c)));
-        this.id = Integer.parseInt(id_s);
+    private void generateId(int id_start) {
+        this.id = ++id_start;
     }
 
     public int getId() {
@@ -37,5 +35,13 @@ public abstract class Product {
 
     public void setPrice(double price) {
         this.price = price;
+    }
+
+    public String getDescription() {
+        return this.description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }
