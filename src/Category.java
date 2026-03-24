@@ -13,6 +13,8 @@ public abstract class Category {
         generateId(this.id);
     }
 
+    public abstract void calc();
+
     private void generateId(int id_start) {
         this.id = ++id_start;
     }
