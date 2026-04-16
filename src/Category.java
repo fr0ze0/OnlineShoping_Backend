@@ -1,8 +1,17 @@
-public abstract class Category {
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
+public abstract class Category implements Payable, Financable {
+    private int count = 0;
     private int id = -1;
     protected String title;
     private double price;
     private String description;
+    public HashMap<String, List<Category>> category = new HashMap<String, List<Category>>();
+    public List <Category> logs = new ArrayList<Category>();
+
+    protected List<Category> products;
 
     public Category() {}
 
@@ -12,8 +21,6 @@ public abstract class Category {
         this.price = price;
         generateId(this.id);
     }
-
-    public abstract void calc();
 
     private void generateId(int id_start) {
         this.id = ++id_start;
