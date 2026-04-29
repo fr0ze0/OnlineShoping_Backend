@@ -2,11 +2,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public abstract class Category implements Payable {
+public abstract class Category implements Payable, Comparable<Category> {
     private int id = -1;
     protected String title;
-    private double price;
-    private String description;
+    protected double price;
+    protected String description;
     private boolean paid = false;
 
     // Constructors
@@ -17,6 +17,12 @@ public abstract class Category implements Payable {
         this.title = title;
         this.description = description;
         this.price = price;
+        generateId();
+    }
+
+    public Category(String title, String description) {
+        this.title = title;
+        this.description = description;
         generateId();
     }
 
@@ -67,6 +73,11 @@ public abstract class Category implements Payable {
                 + "Description: " + this.description + "\n"
                 + "Price: " + this.price + "\n"
                 + "Is paid: " + this.paid;
+    }
+
+    @Override
+    public int compareTo(Category other) {
+        return this.title.compareTo(other.title);
     }
 
     // --- Getters / Setters ---
