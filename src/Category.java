@@ -1,114 +1,45 @@
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
+import java.util.Objects;
 
-public abstract class Category implements Payable, Comparable<Category> {
-    private int id = -1;
-    protected String title;
-    protected double price;
-    protected String description;
-    private boolean paid = false;
-
-    // Constructors
-
-    public Category() {}
-
-    public Category(String title, String description, double price) {
-        this.title = title;
-        this.description = description;
-        this.price = price;
+public class Category implements Comparable<Category> {
+    private int id;
+    private String name;
+    private String description;
+    public Category(String name, String description) {
         generateId();
-    }
-
-    public Category(String title, String description) {
-        this.title = title;
+        this.name = name;
         this.description = description;
-        generateId();
-    }
-
-    // --- Payable ---
-
-    @Override
-    public double getFinalePrice() {
-        return price;
-    }
-
-    @Override
-    public void pay(double value) {
-        if (value >= this.price) {
-            this.paid = true;
-            System.out.printf("Product %s is paid. Cost: %.2f", title, value);
-        }
-        else {
-            System.out.printf("Not enough money for buying %s. Needed money: %.2f", title, value);
-        }
-    }
-
-    @Override
-    public boolean isPaid() {
-        return this.paid;
-    }
-
-    // internal functions
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (obj == null) return false;
-        if (this != (Category)obj) return false;
-
-        Category other = (Category) obj;
-
-        return other.title.equals(this.title) && other.description.equals(this.description) && other.price == this.price;
-    }
-
-    @Override
-    public int hashCode() {
-        return this.title.hashCode() + this.description.hashCode() + this.id;
-    }
-
-    @Override
-    public String toString() {
-        return "Title: " + this.title + "\n"
-                + "Description: " + this.description + "\n"
-                + "Price: " + this.price + "\n"
-                + "Is paid: " + this.paid;
     }
 
     @Override
     public int compareTo(Category other) {
-        return this.title.compareTo(other.title);
+        return name.compareToIgnoreCase(other.name);
     }
 
-    // --- Getters / Setters ---
+    @Override
+    public boolean equals(Object o) {
+        if (!(o instanceof Category)) return false;
+
+        return Objects.equals(name, ((Category)o));
+    }
+
+    @Override
+    public int hashCode() {
+        return name.hashCode();
+    }
+
+    @Override
+    public String toString() {
+        return "Category#" + id
+                + "Name: " + name;
+    }
+
+    public int getId() { return this.id;}
+
+    public String getName() { return this.name; }
+
+    public String getDescription() { return this.description; }
+
+
 
     private void generateId() { this.id += 1; }
-
-    public int getId() {
-        return this.id;
-    }
-
-    public String getTitle() {
-        return this.title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public double getPrice() {
-        return this.price;
-    }
-
-    public void setPrice(double price) {
-        this.price = price;
-    }
-
-    public String getDescription() {
-        return this.description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
 }

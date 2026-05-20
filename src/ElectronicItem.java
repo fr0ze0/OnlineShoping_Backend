@@ -1,4 +1,4 @@
-public class ElectronicItem extends Category {
+public class ElectronicItem extends Product {
 
     public ElectronicItem(String title, String description, double price) {
         super(title, description, price);

@@ -4,8 +4,9 @@ import java.util.List;
 public class Client implements Financable {
     private String name;
     double wallet = 0;
+    private ClientStatus status;
 
-    private List<Category> products = new ArrayList<>();
+    private List<Product> products = new ArrayList<>();
 
     public Client(String name, double wallet) {
         this.name = name;
@@ -26,9 +27,7 @@ public class Client implements Financable {
 
     @Override
     public String getFinanceStatus() {
-        return "Client name: " + this.name + "\n"
-                + "Wallet: " + this.wallet + "\n"
-                + "Purchases: " + products.size();
+        return "Status: " + status;
     }
 
     // --- Internal Functions ---
@@ -55,7 +54,7 @@ public class Client implements Financable {
         return this.name;
     }
 
-    public List<Category> getProducts() {
+    public List<Product> getProducts() {
         return this.products;
     }
 }
